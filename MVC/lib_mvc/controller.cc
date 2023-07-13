@@ -17,6 +17,7 @@ Controller::Controller(int circle_number)
 
 void Controller::Start() {
   cv::namedWindow(view_.window_name(), cv::WINDOW_AUTOSIZE);
+  cv::setMouseCallback(view_.window_name(), OnMouseHandler, this);
 
   for (;;) {
     ResetImage();
@@ -30,6 +31,13 @@ void Controller::Start() {
     if (key == 27) {
       break;
     }
+  }
+}
+
+void Controller::OnMouseHandler(int event, int x, int y, int flags, void* userdata) {
+  auto controller = static_cast<Controller*>(userdata);
+  if (event == cv::EVENT_LBUTTONDOWN) {
+    controller->HandleClickEvent(x, y);
   }
 }
 
@@ -54,6 +62,14 @@ void Controller::MoveCircles() {
     const auto new_direction  = (new_target - circle.location()) / cv::norm(new_target - circle.location());
     const auto new_location = circle.location() + new_direction;
     circle.set_location(new_location);
+  }
+}
+
+void Controller::HandleClickEvent(int x, int y) {
+  for (auto& circle : circles_) {
+    if (cv::norm(circle.location() - cv::Point(x, y)) <= circle.radius()) {
+      circle.set_location(GetRandomLocation());
+    }
   }
 }
 

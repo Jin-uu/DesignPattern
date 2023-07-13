@@ -21,6 +21,8 @@ class Controller {
   void Start();
 
  private:
+  static void OnMouseHandler(int event, int x, int y, int flags, void* userdata);
+
   const cv::Vec3b kBlack = cv::Vec3b(0, 0, 0);
   const cv::Vec3b kRed = cv::Vec3b(0, 0, 255);
   const int kCircleRadius =  30;
@@ -34,6 +36,7 @@ class Controller {
   void DrawCircles();
   void ShowImage();
   void MoveCircles();
+  void HandleClickEvent(int x, int y);
   cv::Point GetRandomLocation();
 };
 

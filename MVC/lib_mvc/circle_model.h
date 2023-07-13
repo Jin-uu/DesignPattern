@@ -28,6 +28,9 @@ class CircleModel {
   cv::Vec3b color_;
   int radius_;
   int thickness_;
+
+
+
 };
 
 }   // namespace mvc
