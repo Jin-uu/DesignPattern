@@ -8,7 +8,10 @@ namespace mvc {
 
 CircleModel::CircleModel(cv::Point location, const cv::Vec3b& color,
                          int radius, int thickness)
-    : location_(location), color_(color), radius_(radius), thickness_(thickness) {}
+    :radius_(radius), thickness_(thickness) {
+  set_location(location);
+  set_color(color);
+}
 
 void CircleModel::set_location(const cv::Point& location) {
   location_ = location;
