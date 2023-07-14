@@ -8,8 +8,8 @@
 #include <vector>
 #include <random>
 
-#include "lib_mvc/view.h"
-#include "lib_mvc/circle_model.h"
+#include "lib_mvp/view.h"
+#include "lib_mvp/circle_model.h"
 
 namespace mvc {
 

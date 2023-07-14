@@ -2,7 +2,7 @@
 // Created by Jin-uu on 2023/07/13.
 //
 
-#include "lib_mvc/controller.h"
+#include "lib_mvp/controller.h"
 
 namespace mvc {
 

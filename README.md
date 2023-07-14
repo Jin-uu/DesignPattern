@@ -4,7 +4,7 @@
 1. Move to target dir
 ```bash
 cd ${project_dir}
-ex) cd ./MVC
+ex) cd ./MVP
 ```
 2. Configure Project
 ```bash

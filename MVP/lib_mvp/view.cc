@@ -2,7 +2,7 @@
 // Created by Jin-uu on 2023/07/13.
 //
 
-#include "lib_mvc/view.h"
+#include "lib_mvp/view.h"
 
 #include <string>
 

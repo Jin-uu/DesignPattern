@@ -2,7 +2,7 @@
 // Created by Jin-uu on 2023/07/13.
 //
 
-#include "lib_mvc/circle_model.h"
+#include "lib_mvp/circle_model.h"
 
 namespace mvc {
 
