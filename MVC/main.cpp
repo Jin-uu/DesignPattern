@@ -10,7 +10,7 @@
 
 
 int main() {
-  mvc::Presenter controller{10};
+  mvc::Controller controller{10};
 
   controller.Start();
 }

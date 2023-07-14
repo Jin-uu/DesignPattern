@@ -13,10 +13,10 @@
 
 namespace mvc {
 
-class Presenter {
+class Controller {
  public:
   using circles = std::vector<CircleModel>;
-  explicit Presenter(int circle_number);
+  explicit Controller(int circle_number);
 
   void Start();
 

@@ -6,7 +6,7 @@
 
 namespace mvc {
 
-Presenter::Presenter(int circle_number)
+Controller::Controller(int circle_number)
     : view_() {
   image_ = cv::Mat(view_.window_size(), CV_8UC3);
   for (int i = 0; i < circle_number; i++) {
@@ -15,7 +15,7 @@ Presenter::Presenter(int circle_number)
   }
 }
 
-void Presenter::Start() {
+void Controller::Start() {
   cv::namedWindow(view_.window_name(), cv::WINDOW_AUTOSIZE);
   cv::setMouseCallback(view_.window_name(), OnMouseHandler, this);
 
@@ -34,28 +34,28 @@ void Presenter::Start() {
   }
 }
 
-void Presenter::OnMouseHandler(int event, int x, int y, int flags, void* userdata) {
-  auto controller = static_cast<Presenter*>(userdata);
+void Controller::OnMouseHandler(int event, int x, int y, int flags, void* userdata) {
+  auto controller = static_cast<Controller*>(userdata);
   if (event == cv::EVENT_LBUTTONDOWN) {
     controller->HandleClickEvent(x, y);
   }
 }
 
-void Presenter::ResetImage() {
+void Controller::ResetImage() {
   view_.ResetImage(&image_, kBlack);
 }
 
-void Presenter::DrawCircles() {
+void Controller::DrawCircles() {
   for (const auto& circle : circles_) {
     view_.DrawCircle(&image_, circle);
   }
 }
 
-void Presenter::ShowImage() {
+void Controller::ShowImage() {
   view_.ShowImage(image_);
 }
 
-void Presenter::MoveCircles() {
+void Controller::MoveCircles() {
   for (auto& circle : circles_) {
     const auto new_target = GetRandomLocation();
     const auto new_direction  = (new_target - circle.location()) / cv::norm(new_target - circle.location());
@@ -64,7 +64,7 @@ void Presenter::MoveCircles() {
   }
 }
 
-void Presenter::HandleClickEvent(int x, int y) {
+void Controller::HandleClickEvent(int x, int y) {
   for (auto& circle : circles_) {
     if (cv::norm(circle.location() - cv::Point(x, y)) <= circle.radius()) {
       circle.set_location(GetRandomLocation());
@@ -72,7 +72,7 @@ void Presenter::HandleClickEvent(int x, int y) {
   }
 }
 
-cv::Point Presenter::GetRandomLocation() {
+cv::Point Controller::GetRandomLocation() {
   static auto gen = std::mt19937(std::random_device {}());
   static auto width_dis = std::uniform_int_distribution<int>(0, view_.window_size().width);
   static auto height_dis = std::uniform_int_distribution<int>(0, view_.window_size().width);
