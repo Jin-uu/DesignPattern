@@ -2,8 +2,8 @@
 // Created by Jin-uu on 2023/07/13.
 //
 
-#ifndef LIB_MVC_VIEW_H_
-#define LIB_MVC_VIEW_H_
+#ifndef LIB_MVP_VIEW_H_
+#define LIB_MVP_VIEW_H_
 
 #include <string>
 
@@ -33,4 +33,4 @@ class View {
 
 }   // namespace mvc
 
-#endif  // LIB_MVC_VIEW_H_
+#endif  // LIB_MVP_VIEW_H_

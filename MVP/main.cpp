@@ -4,15 +4,15 @@
 
 #include "lib_mvp/circle_model.h"
 #include "lib_mvp/view.h"
-#include "lib_mvp/controller.h"
+#include "lib_mvp/presenter.h"
 
 #include "opencv2/opencv.hpp"
 
 
 int main(void) {
-  mvc::Controller controller{10};
+  mvc::Presenter presenter{10};
 
-  controller.Start();
+  presenter.Start();
 }
 
 

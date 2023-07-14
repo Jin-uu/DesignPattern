@@ -2,8 +2,8 @@
 // Created by Jin-uu on 2023/07/13.
 //
 
-#ifndef LIB_MVC_CIRCLE_MODEL_H_
-#define LIB_MVC_CIRCLE_MODEL_H_
+#ifndef LIB_MVP_CIRCLE_MODEL_H_
+#define LIB_MVP_CIRCLE_MODEL_H_
 
 #include "opencv2/opencv.hpp"
 
@@ -35,4 +35,4 @@ class CircleModel {
 
 }   // namespace mvc
 
-#endif  // LIB_MVC_CIRCLE_MODEL_H_
+#endif  // LIB_MVP_CIRCLE_MODEL_H_
