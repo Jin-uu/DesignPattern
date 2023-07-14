@@ -2,11 +2,11 @@
 // Created by Jin-uu on 2023/07/13.
 //
 
-#include "lib_mvp/controller.h"
+#include "lib_mvc/controller.h"
 
 namespace mvc {
 
-Controller::Controller(int circle_number)
+Presenter::Presenter(int circle_number)
     : view_() {
   image_ = cv::Mat(view_.window_size(), CV_8UC3);
   for (int i = 0; i < circle_number; i++) {
@@ -15,7 +15,7 @@ Controller::Controller(int circle_number)
   }
 }
 
-void Controller::Start() {
+void Presenter::Start() {
   cv::namedWindow(view_.window_name(), cv::WINDOW_AUTOSIZE);
   cv::setMouseCallback(view_.window_name(), OnMouseHandler, this);
 
@@ -34,29 +34,28 @@ void Controller::Start() {
   }
 }
 
-void Controller::OnMouseHandler(int event, int x, int y, int flags, void* userdata) {
-  auto controller = static_cast<Controller*>(userdata);
+void Presenter::OnMouseHandler(int event, int x, int y, int flags, void* userdata) {
+  auto controller = static_cast<Presenter*>(userdata);
   if (event == cv::EVENT_LBUTTONDOWN) {
     controller->HandleClickEvent(x, y);
   }
 }
 
-void Controller::ResetImage() {
+void Presenter::ResetImage() {
   view_.ResetImage(&image_, kBlack);
 }
 
-void Controller::DrawCircles() {
+void Presenter::DrawCircles() {
   for (const auto& circle : circles_) {
-    view_.DrawCircle(&image_, circle.location(), circle.color(),
-                     circle.radius(), circle.thickness());
+    view_.DrawCircle(&image_, circle);
   }
 }
 
-void Controller::ShowImage() {
+void Presenter::ShowImage() {
   view_.ShowImage(image_);
 }
 
-void Controller::MoveCircles() {
+void Presenter::MoveCircles() {
   for (auto& circle : circles_) {
     const auto new_target = GetRandomLocation();
     const auto new_direction  = (new_target - circle.location()) / cv::norm(new_target - circle.location());
@@ -65,7 +64,7 @@ void Controller::MoveCircles() {
   }
 }
 
-void Controller::HandleClickEvent(int x, int y) {
+void Presenter::HandleClickEvent(int x, int y) {
   for (auto& circle : circles_) {
     if (cv::norm(circle.location() - cv::Point(x, y)) <= circle.radius()) {
       circle.set_location(GetRandomLocation());
@@ -73,7 +72,7 @@ void Controller::HandleClickEvent(int x, int y) {
   }
 }
 
-cv::Point Controller::GetRandomLocation() {
+cv::Point Presenter::GetRandomLocation() {
   static auto gen = std::mt19937(std::random_device {}());
   static auto width_dis = std::uniform_int_distribution<int>(0, view_.window_size().width);
   static auto height_dis = std::uniform_int_distribution<int>(0, view_.window_size().width);

@@ -8,15 +8,15 @@
 #include <vector>
 #include <random>
 
-#include "lib_mvp/view.h"
-#include "lib_mvp/circle_model.h"
+#include "lib_mvc/view.h"
+#include "lib_mvc/circle_model.h"
 
 namespace mvc {
 
-class Controller {
+class Presenter {
  public:
   using circles = std::vector<CircleModel>;
-  explicit Controller(int circle_number);
+  explicit Presenter(int circle_number);
 
   void Start();
 
